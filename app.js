@@ -36,8 +36,6 @@ bgImage.onload = function () {
     resizeCanvas();
 };
 
-window.addEventListener("resize", resizeCanvas);
-
 ctx.strokeStyle = "red";
 ctx.lineWidth = 3;
 
@@ -53,7 +51,7 @@ function startPainting() {
 
 function stopPainting() {
     painting = false;
-    ctx.beginPath(); // 선이 끊어지도록 초기화
+    ctx.beginPath(); 
 }
 
 function onMouseMove(event) {
@@ -83,35 +81,35 @@ saveBtn.addEventListener("click", function () {
 
 function getTouchPos(touchEvent) {
     const rect = canvas.getBoundingClientRect();
-    const touch = touchEvent.touches[0]; // 첫 번째 손가락 기준
+    const touch = touchEvent.touches[0]; 
     return {
         x: (touch.clientX - rect.left) * (canvas.width / rect.width),
         y: (touch.clientY - rect.top) * (canvas.height / rect.height),
     };
 }
 
-canvas.addEventListener("touchstart", function (event) {
-    event.preventDefault(); // 화면 스크롤 방지
+ccanvas.addEventListener("touchstart", function (event) {
+    event.preventDefault();
     const { x, y } = getTouchPos(event);
     painting = true;
     ctx.beginPath();
     ctx.moveTo(x, y);
-});
+}, { passive: false }); // 👈 중요!
 
 canvas.addEventListener("touchmove", function (event) {
-    event.preventDefault(); // 화면 스크롤 방지
+    event.preventDefault();
     if (!painting) return;
     const { x, y } = getTouchPos(event);
     ctx.lineTo(x, y);
     ctx.stroke();
-});
+}, { passive: false }); // 👈 중요!
 
 canvas.addEventListener("touchend", function () {
     painting = false;
     ctx.beginPath();
-});
+}, { passive: false });
 
 canvas.addEventListener("touchcancel", function () {
     painting = false;
     ctx.beginPath();
-});
+}, { passive: false });
