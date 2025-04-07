@@ -9,11 +9,13 @@ body {
 }
 
 .canvas {
-    width:700px;
-    height:700px;
-    background-image:url("omelette(aimg).jpg"); 
+    width: 90vw;
+    max-width: 700px;
+    aspect-ratio: 1 / 1;
+    background-image: url("omelette(aimg).jpg"); 
     background-size: cover;
-    border:3px solid black;
+    border: 3px solid black;
+    display: block;
 }
 
 #saveBtn {
@@ -26,14 +28,31 @@ body {
     }
 
     .canvas {
-        width: 90vw;  /* viewport width의 90% */
-        height: 90vw; /* 정사각형 유지 */
+        width: 90vw;
+        aspect-ratio: 1 / 1;
         border-width: 2px;
     }
 
     #saveBtn {
         margin-top: 12px;
         font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .canvas {
+        width: 95vw;
+        aspect-ratio: 1 / 1;
+        border-width: 1px;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    #saveBtn {
+        font-size: 12px;
+        margin-top: 10px;
     }
 }
 
@@ -44,12 +63,19 @@ body {
 
     .canvas {
         width: 500px;
-        height: 500px;
+        aspect-ratio: 1 / 1;
         border-width: 3px;
     }
 
     #saveBtn {
         margin-top: 14px;
         font-size: 15px;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    .canvas {
+        width: 80vh;
+        aspect-ratio: 1 / 1;
     }
 }
