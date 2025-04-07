@@ -81,6 +81,15 @@ saveBtn.addEventListener("click", function () {
    link.click();
 });
 
+function getTouchPos(touchEvent) {
+    const rect = canvas.getBoundingClientRect();
+    const touch = touchEvent.touches[0]; // 첫 번째 손가락 기준
+    return {
+        x: (touch.clientX - rect.left) * (canvas.width / rect.width),
+        y: (touch.clientY - rect.top) * (canvas.height / rect.height),
+    };
+}
+
 canvas.addEventListener("touchstart", function (event) {
     event.preventDefault(); // 화면 스크롤 방지
     const { x, y } = getTouchPos(event);
