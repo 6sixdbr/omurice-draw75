@@ -36,3 +36,20 @@ body {
         font-size: 14px;
     }
 }
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    body {
+        padding: 40px;
+    }
+
+    .canvas {
+        width: 500px;
+        height: 500px;
+        border-width: 3px;
+    }
+
+    #saveBtn {
+        margin-top: 14px;
+        font-size: 15px;
+    }
+}
