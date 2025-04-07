@@ -7,17 +7,26 @@ const bgImage = new Image();
 bgImage.src = "omelette(aimg).jpg";
 
 function resizeCanvas() {
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    canvas.width = width;
-    canvas.height = height;
+    const displayWidth = canvas.clientWidth;
+    const displayHeight = canvas.clientHeight;
+    const scale = window.devicePixelRatio || 1;
 
-    // 다시 배경 이미지 그리기
-    ctx.drawImage(bgImage, 0, 0, width, height);
+    canvas.width = displayWidth * scale;
+    canvas.height = displayHeight * scale;
 
-    // 선 스타일 재설정
+    canvas.style.width = `${displayWidth}px`;
+    canvas.style.height = `${displayHeight}px`;
+
+    // 🔥 그리기 좌표계 스케일 조정
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // 초기화
+    ctx.scale(scale, scale); // 확대 적용
+
+    // ✅ 배경 이미지는 display 크기에 맞춰 그림!
+    ctx.drawImage(bgImage, 0, 0, displayWidth, displayHeight);
+
     setDrawingStyle();
 }
+
 
 function setDrawingStyle() {
     ctx.strokeStyle = "red";
@@ -27,8 +36,8 @@ function setDrawingStyle() {
 function getMousePos(event) {
     const rect = canvas.getBoundingClientRect();
     return {
-        x: (event.clientX - rect.left) * (canvas.width / rect.width),
-        y: (event.clientY - rect.top) * (canvas.height / rect.height)
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
     };
 }
 
@@ -79,12 +88,12 @@ saveBtn.addEventListener("click", function () {
    link.click();
 });
 
-function getTouchPos(touchEvent) {
+function getTouchPos(event) {
     const rect = canvas.getBoundingClientRect();
-    const touch = touchEvent.touches[0]; 
+    const touch = event.touches[0];
     return {
-        x: (touch.clientX - rect.left) * (canvas.width / rect.width),
-        y: (touch.clientY - rect.top) * (canvas.height / rect.height),
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top
     };
 }
 
@@ -108,6 +117,12 @@ canvas.addEventListener("touchend", function () {
     painting = false;
     ctx.beginPath();
 }, { passive: false });
+
+canvas.addEventListener("touchcancel", function () {
+    painting = false;
+    ctx.beginPath();
+}, { passive: false });
+
 
 canvas.addEventListener("touchcancel", function () {
     painting = false;
