@@ -88,7 +88,7 @@ function getTouchPos(touchEvent) {
     };
 }
 
-ccanvas.addEventListener("touchstart", function (event) {
+canvas.addEventListener("touchstart", function (event) {
     event.preventDefault();
     const { x, y } = getTouchPos(event);
     painting = true;
