@@ -19,3 +19,20 @@ body {
 #saveBtn {
     margin-top: 16px; /* 16px는 줄 하나 정도 */
 }
+
+@media only screen and (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+
+    .canvas {
+        width: 90vw;  /* viewport width의 90% */
+        height: 90vw; /* 정사각형 유지 */
+        border-width: 2px;
+    }
+
+    #saveBtn {
+        margin-top: 12px;
+        font-size: 14px;
+    }
+}
