@@ -113,7 +113,7 @@ drawCanvas.addEventListener("mouseleave", stopPainting);
 saveBtn.addEventListener("click", function () {
     saveMergedCanvas(); // 우리가 만든 저장 함수 호출
    const link = document.createElement("a");
-   link.download = "Omelette.png";
+   link.download = "omelette.png";
    link.click();
 });
 
