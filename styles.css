@@ -1,25 +1,33 @@
 @charset "utf-8";
 body {
-    background-color: rgb(255, 233, 252);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding: 50px;
+    background-color: rgb(200, 245, 255); /*웹페이지 전체 배경 색상*/
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;/*폰트 패밀리*/
+    display:flex; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
+    flex-direction:column; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
+    align-items:center; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
+    padding: 50px; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
+}
+
+#DiOmelette {
+    margin-bottom: 12px; /* 상단에 공간 생성 (16px는 줄 하나 정도의 공간을 생성할 수 있음) */
 }
 
 .canvas {
     width: 90vw;
     max-width: 700px;
     aspect-ratio: 1 / 1;
-    background-image: url("omelette(aimg).jpg"); 
-    background-size: cover;
-    border: 3px solid black;
+    border: 3px solid black; /*캔버스 외각선*/
     display: block;
 }
+.bg-canvas{ 
+    background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
+    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정쓰*/
+}
+
+.C-canvas{background-color: rgb(252, 251, 245);}
 
 #saveBtn {
-    margin-top: 16px; /* 16px는 줄 하나 정도 */
+    margin-top: 16px; /* 상단에 공간 생성 (16px는 줄 하나 정도의 공간을 생성할 수 있음) */
 }
 
 @media only screen and (max-width: 480px) {
@@ -27,7 +35,8 @@ body {
         padding: 20px;
     }
 
-    .canvas {
+    .canvas,
+    .bg-canvas {
         width: 90vw;
         aspect-ratio: 1 / 1;
         border-width: 2px;
@@ -40,7 +49,8 @@ body {
 }
 
 @media only screen and (max-width: 320px) {
-    .canvas {
+    .canvas,
+    .bg-canvas {
         width: 95vw;
         aspect-ratio: 1 / 1;
         border-width: 1px;
@@ -61,7 +71,8 @@ body {
         padding: 40px;
     }
 
-    .canvas {
+    .canvas,
+    .bg-canvas {
         width: 500px;
         aspect-ratio: 1 / 1;
         border-width: 3px;
@@ -79,3 +90,19 @@ body {
         aspect-ratio: 1 / 1;
     }
 }
+
+.canvas-wrapper {
+    position: relative;
+    width: 90vw;
+    max-width: 700px;
+    aspect-ratio: 1 / 1;
+  }
+  .canvas,
+  .bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+  }
