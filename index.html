@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!--언어설정: 영어-->
     <head>
         <meta charset="UTF-8" />
-        <meta name='viewport' content="width=device-width, initial-scale=1.0"/>
+        <meta name='viewport' content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE-edge" /> 
-        <link rel="stylesheet" href="styles.css" />
-        <title>PaintJS</title>
+        <link rel="stylesheet" href="styles.css" /> <!--외부로 연결된 css-->
+        <title>maidcafe75</title> <!--웹페이지 타이틀-->
     </head>
     <body>
-        <h1><b>오므라이스에 케첩을 뿌리자&#33;&#33;</b></h1>
-        <label for="lineWidth">선 굵기:</label>
-        <input type="range" id="lineWidth" min="1.5" max="8.5" value="1"/>
-        <canvas id="jsCanvas" class="canvas" width="700" height="700"></canvas>
-        <button id="saveBtn">Save 💾</button>
+        <h1><b>cafe75</b></h1>    <!--웹페이지 내 표기되는 글-->
+        <div>
+            <button id="DiOmelette">2번 오므라이스</button>&nbsp;&nbsp;
+            <button id="eraserBtn">지우개</button>&nbsp;&nbsp; <!--지우개 버튼 이름표-->
+            <label for="lineWidth">선 굵기:</label>&nbsp;&nbsp; <!--선 굵기 조절 바 이름표-->
+            <input type="range" id="lineWidth" min="1.5" max="8.5" value="4"/> &nbsp;&nbsp; <!--펜 굵기 조절 바/ 최소(1.5), 최대(8.5), 기본(4)-->
+            <button id="saveBtn">Save 💾</button> <!--저장 버튼 -->
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="CCanvas" class="canvas C-canvas"></canvas>
+            <canvas id="bgCanvas" class="canvas bg-canvas"></canvas> <!-- 배경 오므라이스 이미지 레이어 -->
+            <canvas id="drawCanvas" class="canvas"></canvas> <!-- 사용자가 그림 그리는 레이어 -->
+        </div>
     </body> 
-    <script src="app.js"></script>
+    <script src="app.js"></script> <!--외부로 연결된 자바스크립트-->
 </html>
