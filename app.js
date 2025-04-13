@@ -1,49 +1,79 @@
-const canvas = document.getElementById("jsCanvas");
-const ctx = canvas.getContext("2d");
 const saveBtn = document.getElementById("saveBtn");
 const lineWidthRange = document.getElementById("lineWidth");
+const bgCanvas = document.getElementById("bgCanvas");
+const drawCanvas = document.getElementById("drawCanvas");
+const eraserBtn = document.getElementById("eraserBtn");
+let isErasing = false;
+let bgImage = new Image();
+const bgCtx = bgCanvas.getContext("2d");
+const ctx = drawCanvas.getContext("2d"); // 사용자 그림은 이쪽에만!
 
-const bgImage = new Image();
-bgImage.src = "omelette(aimg).jpg";
+bgImage.src = "omelette.png";
+bgImage.onload = function (){
+    resizeCanvases();
+}
 
-function resizeCanvas() {
-    const displayWidth = canvas.clientWidth;
-    const displayHeight = canvas.clientHeight;
+let isCircleOmelette = false; // 현재 이미지가 동그란 오므라이스인지 여부
+
+const toggleImageBtn = document.getElementById("DiOmelette");
+
+const DiOmelette = document.getElementById("DiOmelette");
+
+DiOmelette.addEventListener("click", function () {
+  if (isCircleOmelette) {
+    updateBackgroundImage("omelette.png");
+    DiOmelette.textContent = "2번 오므라이스";
+  } else {
+    updateBackgroundImage("omelette(circle).png");
+    DiOmelette.textContent = "1번 오므라이스";
+  }
+  isCircleOmelette = !isCircleOmelette;
+});
+
+
+function resizeCanvases() {
+    const displayWidth = drawCanvas.clientWidth;
+    const displayHeight = drawCanvas.clientHeight;
     const scale = window.devicePixelRatio || 1;
 
-    canvas.width = displayWidth * scale;
-    canvas.height = displayHeight * scale;
+    for (const canvas of [bgCanvas, drawCanvas]) {
+        canvas.width = displayWidth * scale;
+        canvas.height = displayHeight * scale;
+        canvas.style.width = `${displayWidth}px`;
+        canvas.style.height = `${displayHeight}px`;
+    }
 
-    canvas.style.width = `${displayWidth}px`;
-    canvas.style.height = `${displayHeight}px`;
+    bgCtx.setTransform(1, 0, 0, 1, 0, 0);
+    bgCtx.scale(scale, scale);
+    bgCtx.drawImage(bgImage, 0, 0, displayWidth, displayHeight);
 
-    // 🔥 그리기 좌표계 스케일 조정
-    ctx.setTransform(1, 0, 0, 1, 0, 0); // 초기화
-    ctx.scale(scale, scale); // 확대 적용
-
-    // ✅ 배경 이미지는 display 크기에 맞춰 그림!
-    ctx.drawImage(bgImage, 0, 0, displayWidth, displayHeight);
-
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(scale, scale);
     setDrawingStyle();
 }
 
+function updateBackgroundImage(src) {
+    bgImage = new Image();
+    bgImage.src = src;
+    bgImage.onload = () => {
+      resizeCanvases(); // 이미지 로드 후 배경 다시 그림
+    };
+  }
 
 function setDrawingStyle() {
     ctx.strokeStyle = "red";
     ctx.lineWidth = lineWidthRange.value;
+    ctx.lineCap = "round"; 
+    ctx.lineJoin = "round"; 
 }
 
 function getMousePos(event) {
-    const rect = canvas.getBoundingClientRect();
+    const rect = drawCanvas.getBoundingClientRect();
     return {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
     };
 }
-
-bgImage.onload = function () {
-    resizeCanvas();
-};
 
 ctx.strokeStyle = "red";
 ctx.lineWidth = 3;
@@ -75,21 +105,20 @@ function onMouseMove(event) {
     }
 }
 
-canvas.addEventListener("mousemove", onMouseMove);
-canvas.addEventListener("mousedown", startPainting);
-canvas.addEventListener("mouseup", stopPainting);
-canvas.addEventListener("mouseleave", stopPainting);
+drawCanvas.addEventListener("mousemove", onMouseMove);
+drawCanvas.addEventListener("mousedown", startPainting);
+drawCanvas.addEventListener("mouseup", stopPainting);
+drawCanvas.addEventListener("mouseleave", stopPainting);
 
 saveBtn.addEventListener("click", function () {
-   const image = canvas.toDataURL("image/png");
+    saveMergedCanvas(); // 우리가 만든 저장 함수 호출
    const link = document.createElement("a");
-   link.href = image;
-   link.download = "my_drawing.png";
+   link.download = "Omelette.png";
    link.click();
 });
 
 function getTouchPos(event) {
-    const rect = canvas.getBoundingClientRect();
+    const rect = drawCanvas.getBoundingClientRect();
     const touch = event.touches[0];
     return {
         x: touch.clientX - rect.left,
@@ -97,7 +126,7 @@ function getTouchPos(event) {
     };
 }
 
-canvas.addEventListener("touchstart", function (event) {
+drawCanvas.addEventListener("touchstart", function (event) {
     event.preventDefault();
     const { x, y } = getTouchPos(event);
     painting = true;
@@ -105,7 +134,7 @@ canvas.addEventListener("touchstart", function (event) {
     ctx.moveTo(x, y);
 }, { passive: false }); // 👈 중요!
 
-canvas.addEventListener("touchmove", function (event) {
+drawCanvas.addEventListener("touchmove", function (event) {
     event.preventDefault();
     if (!painting) return;
     const { x, y } = getTouchPos(event);
@@ -113,18 +142,55 @@ canvas.addEventListener("touchmove", function (event) {
     ctx.stroke();
 }, { passive: false }); // 👈 중요!
 
-canvas.addEventListener("touchend", function () {
+drawCanvas.addEventListener("touchend", function () {
     painting = false;
     ctx.beginPath();
 }, { passive: false });
 
-canvas.addEventListener("touchcancel", function () {
+drawCanvas.addEventListener("touchcancel", function () {
     painting = false;
     ctx.beginPath();
 }, { passive: false });
 
+function activateEraser() {
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.lineWidth = 20;
+}
 
-canvas.addEventListener("touchcancel", function () {
-    painting = false;
-    ctx.beginPath();
-}, { passive: false });
+function deactivateEraser() {
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 1.0; 
+    setDrawingStyle();
+}
+
+eraserBtn.addEventListener("click", () => {
+    isErasing = !isErasing;
+    if (isErasing) {
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.lineWidth = 20;
+        eraserBtn.textContent = "🖍️";
+    } else {
+        ctx.globalCompositeOperation = "source-over";
+        setDrawingStyle();
+        eraserBtn.textContent = "지우개";
+    }
+});
+
+function saveMergedCanvas() {
+    const mergedCanvas = document.createElement("canvas");
+    const width = bgCanvas.width;
+    const height = bgCanvas.height;
+
+    mergedCanvas.width = width;
+    mergedCanvas.height = height;
+
+    const mergedCtx = mergedCanvas.getContext("2d");
+    mergedCtx.drawImage(bgCanvas, 0, 0);
+    mergedCtx.drawImage(drawCanvas, 0, 0);
+
+    const image = mergedCanvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = "omelette.png";
+    link.click();
+}
