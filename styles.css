@@ -8,8 +8,8 @@ body {
     padding: 50px; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
 }
 
-#DiOmelette {
-    margin-bottom: 12px; /* 상단에 공간 생성 (16px는 줄 하나 정도의 공간을 생성할 수 있음) */
+#eraserBtn {
+    margin-bottom: 10px; /* 상단에 공간 생성 (16px는 줄 하나 정도의 공간을 생성할 수 있음) */
 }
 
 .canvas {
