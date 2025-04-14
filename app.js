@@ -168,11 +168,11 @@ eraserBtn.addEventListener("click", () => {
     if (isErasing) {
         ctx.globalCompositeOperation = "destination-out";
         ctx.lineWidth = 20;
-        eraserBtn.textContent = "🖍️";
+        eraserBtn.textContent = "『🖍️』 ▶ 🧽";
     } else {
         ctx.globalCompositeOperation = "source-over";
         setDrawingStyle();
-        eraserBtn.textContent = "지우개";
+        eraserBtn.textContent = "『🧽』 ▶ 🖍️";
     }
 });
 
