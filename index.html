@@ -8,18 +8,33 @@
         <title>maidcafe75</title> <!--웹페이지 타이틀-->
     </head>
     <body>
-        <button id="DiOmelette">2번 오므라이스</button>  <!--웹페이지 내 표기되는 글-->
+        <button id="DiOmelette">2번 오므라이스</button>&nbsp;&nbsp;
         <div>
-            <button id="eraserBtn">『🖍️』 ▶ 🧽</button>&nbsp;&nbsp; <!--지우개 버튼 이름표-->
-            <label for="lineWidth">선 굵기</label>&nbsp; <!--선 굵기 조절 바 이름표-->
-            <input type="range" id="lineWidth" min="1.5" max="8.5" value="4"/> &nbsp;&nbsp; <!--펜 굵기 조절 바/ 최소(1.5), 최대(8.5), 기본(4)-->
-            <button id="saveBtn">💾</button> <!--저장 버튼 -->
-        </div>
-        <div class="canvas-wrapper">
-            <canvas id="CCanvas" class="canvas C-canvas"></canvas>
-            <canvas id="bgCanvas" class="canvas bg-canvas"></canvas> <!-- 배경 오므라이스 이미지 레이어 -->
-            <canvas id="drawCanvas" class="canvas"></canvas> <!-- 사용자가 그림 그리는 레이어 -->
-        </div>
+            <div>
+                <button id="openMenuBtn">메뉴 보기</button>
+                <button id="eraserBtn">『🖍️』 ▶ 🧽</button>&nbsp;&nbsp; <!--지우개 버튼 이름표-->
+                <label for="lineWidth">선 굵기</label>&nbsp;&nbsp; <!--선 굵기 조절 바 이름표-->
+                <input type="range" id="lineWidth" min="1.5" max="20.5" value="5"/> &nbsp;&nbsp; <!--펜 굵기 조절 바/ 최소(1.5), 최대(8.5), 기본(4)-->
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="CCanvas" class="canvas C-canvas"></canvas>
+                <canvas id="bgCanvas" class="canvas bg-canvas"></canvas> <!-- 배경 오므라이스 이미지 레이어 -->
+                <canvas id="drawCanvas" class="canvas"></canvas> <!-- 사용자가 그림 그리는 레이어 -->
+                <div id="menuModal" class="modal hidden">
+                    <div class="modal-content">
+                      <h2>메뉴 선택</h2>
+                      <div class="menu-options">
+                        <img src="omelette.png" data-src="omelette.png" alt="오므라이스">
+                        <img src="omelette(circle).png" data-src="omelette(circle).png" alt="둥근오므라이스">
+                        <img src="comingsoon.png"  alt="coming soon">
+                      </div>
+                      <button id="closeMenuBtn">닫기</button>
+                    </div>
+                  </div>
+            </div>
+        </div>    
+        <br>
+        <button id="saveBtn">💾</button> <!--저장 버튼 -->
     </body> 
     <script src="app.js"></script> <!--외부로 연결된 자바스크립트-->
 </html>
