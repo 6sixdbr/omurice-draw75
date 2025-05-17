@@ -1,33 +1,35 @@
 @charset "utf-8";
 body {
-    background-color: rgb(200, 245, 255); /*웹페이지 전체 배경 색상*/
+    background-color: rgb(233, 234, 225); /*웹페이지 전체 배경 색상*/
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;/*폰트 패밀리*/
-    display:flex; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
-    flex-direction:column; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
-    align-items:center; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
-    padding: 50px; /* 아직 본인은 모르겠음...(gpt의 작품이다...)*/
+    display:flex; 
+    flex-direction:column; 
+    background-image: url('asfalt.png');
+    background-repeat: repeat;
+    background-size: 200px 200px; /* 적당히 조정 */
 }
 
 #eraserBtn {
-    margin-bottom: 10px; /* 상단에 공간 생성 (16px는 줄 하나 정도의 공간을 생성할 수 있음) */
+    margin-bottom: 10px; /* margin-상단에 16px만큼 생성*/
 }
 
 .canvas {
     width: 90vw;
     max-width: 700px;
-    aspect-ratio: 1 / 1;
-    border: 3px solid black; /*캔버스 외각선*/
+    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
+    border: 5px solid black; /*캔버스 외각선(두께, 색깔)*/
     display: block;
 }
+
 .bg-canvas{ 
     background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
-    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정쓰*/
+    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정*/
 }
 
 .C-canvas{background-color: rgb(252, 251, 245);}
 
 #saveBtn {
-    margin-top: 16px; /* 상단에 공간 생성 (16px는 줄 하나 정도의 공간을 생성할 수 있음) */
+    margin-top: 16px; /* margin-상단에 16px만큼 생성*/
 }
 
 @media only screen and (max-width: 480px) {
@@ -39,7 +41,7 @@ body {
     .bg-canvas {
         width: 90vw;
         aspect-ratio: 1 / 1;
-        border-width: 2px;
+        border-width: 1px;
     }
 
     #saveBtn {
@@ -57,12 +59,12 @@ body {
     }
 
     body {
-        padding: 10px;
+        padding: 20px;
     }
 
     #saveBtn {
         font-size: 12px;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 }
 
@@ -105,4 +107,45 @@ body {
     width: 100%;
     height: 100%;
     touch-action: none;
+  }
+
+  /* 모달 배경 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4); /* 반투명 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  /* 모달 내부 콘텐츠 박스 */
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  }
+  
+  .menu-options img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: 0.2s;
+  }
+  
+  .menu-options img:hover {
+    border-color: #f44336;
+  }
+  
+  .hidden {
+    display: none;
   }
