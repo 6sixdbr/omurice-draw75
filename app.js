@@ -30,6 +30,9 @@ DiOmelette.addEventListener("click", function () {
   isCircleOmelette = !isCircleOmelette;
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    // 버튼 클릭 이벤트 여기서 설정
+});
 
 function resizeCanvases() {
     const displayWidth = drawCanvas.clientWidth;
@@ -100,6 +103,13 @@ function onMouseMove(event) {
         ctx.beginPath();
         ctx.moveTo(x, y);
     } else {
+        if (isErasing) {
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.lineWidth = lineWidthRange.value;
+        } else {
+            ctx.globalCompositeOperation ="source-over";
+            ctx.lineWidth = lineWidthRange.value;
+        }
         ctx.lineTo(x, y);
         ctx.stroke();
     }
@@ -166,13 +176,9 @@ function deactivateEraser() {
 eraserBtn.addEventListener("click", () => {
     isErasing = !isErasing;
     if (isErasing) {
-        ctx.globalCompositeOperation = "destination-out";
-        ctx.lineWidth = 20;
-        eraserBtn.textContent = "『🖍️』 ▶ 🧽";
-    } else {
-        ctx.globalCompositeOperation = "source-over";
-        setDrawingStyle();
         eraserBtn.textContent = "『🧽』 ▶ 🖍️";
+    } else {
+        eraserBtn.textContent = "『🖍️』 ▶ 🧽";
     }
 });
 
@@ -194,3 +200,24 @@ function saveMergedCanvas() {
     link.download = "omelette.png";
     link.click();
 }
+
+const openMenuBtn = document.getElementById("openMenuBtn");
+const closeMenuBtn = document.getElementById("closeMenuBtn");
+const menuModal = document.getElementById("menuModal");
+const menuOptions = document.querySelectorAll(".menu-options img");
+
+openMenuBtn.addEventListener("click", () => {
+  menuModal.classList.remove("hidden");
+});
+
+closeMenuBtn.addEventListener("click", () => {
+  menuModal.classList.add("hidden");
+});
+
+menuOptions.forEach(img => {
+  img.addEventListener("click", () => {
+    const selected = img.dataset.src;
+    updateBackgroundImage(selected); // 기존 함수 활용
+    menuModal.classList.add("hidden");
+  });
+});
