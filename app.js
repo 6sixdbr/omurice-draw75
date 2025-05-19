@@ -15,20 +15,6 @@ bgImage.onload = function (){
 
 let isCircleOmelette = false; // 현재 이미지가 동그란 오므라이스인지 여부
 
-const toggleImageBtn = document.getElementById("DiOmelette");
-
-const DiOmelette = document.getElementById("DiOmelette");
-
-DiOmelette.addEventListener("click", function () {
-  if (isCircleOmelette) {
-    updateBackgroundImage("omelette.png");
-    DiOmelette.textContent = "2번 오므라이스";
-  } else {
-    updateBackgroundImage("omelette(circle).png");
-    DiOmelette.textContent = "1번 오므라이스";
-  }
-  isCircleOmelette = !isCircleOmelette;
-});
 
 document.addEventListener("DOMContentLoaded", () => {
     // 버튼 클릭 이벤트 여기서 설정
