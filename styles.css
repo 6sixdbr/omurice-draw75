@@ -11,6 +11,15 @@ body {
 
 #eraserBtn {
     margin-bottom: 10px; /* margin-상단에 16px만큼 생성*/
+    margin-left: 560px;
+}
+
+#openMenuBtn {
+    margin-left: 30;
+}
+
+#turnoverBtn {
+    margin-top: 6px;
 }
 
 .canvas {
@@ -24,9 +33,28 @@ body {
 .bg-canvas{ 
     background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
     background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정*/
+    aspect-ratio: 1 / 1; /* 이미지 비율 1:1 */
 }
 
 .C-canvas{background-color: rgb(252, 251, 245);}
+
+.main-container {
+    display: flex;           /* 좌우로 배치하려면 flex! */
+    align-items: flex-start; /* 세로로 정렬 */
+    gap: 20px;               /* 버튼과 캔버스 사이 간격 */
+  }
+  
+  .menu-side {
+    display: flex;
+    flex-direction: column; /* 세로로 여러 개 버튼 쌓을 때 유용 */
+    justify-content: flex-start;
+  }
+  
+  .canvas-wrapper {
+    position: relative;
+    width: 700px;
+    height: 700px;
+  }
 
 #saveBtn {
     margin-top: 16px; /* margin-상단에 16px만큼 생성*/
@@ -109,7 +137,6 @@ body {
     touch-action: none;
   }
 
-  /* 모달 배경 */
 .modal {
     position: fixed;
     top: 0;
@@ -120,7 +147,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 1001;
   }
   
   /* 모달 내부 콘텐츠 박스 */
