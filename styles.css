@@ -10,7 +10,7 @@ body {
 }
 
 #eraserBtn {
-    margin-bottom: 10px; /* margin-상단에 16px만큼 생성*/
+    margin-bottom: 16px; /* margin-상단에 16px만큼 생성*/
     margin-left: 560px;
 }
 
