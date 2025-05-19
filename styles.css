@@ -6,12 +6,12 @@ body {
     flex-direction:column; 
     background-image: url('asfalt.png');
     background-repeat: repeat;
-    background-size: 200px 200px; /* 적당히 조정 */
+    background-size: 300px 300px; /* 적당히 조정 */
 }
 
 #eraserBtn {
     margin-bottom: 16px; /* margin-상단에 16px만큼 생성*/
-    margin-left: 560px;
+    margin-left: 130px;
 }
 
 #openMenuBtn {
@@ -52,8 +52,8 @@ body {
   
   .canvas-wrapper {
     position: relative;
-    width: 700px;
-    height: 700px;
+    max-max-width: 700px;
+    aspect-ratio: 1 / 1;
   }
 
 #saveBtn {
