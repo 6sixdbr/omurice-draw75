@@ -1,20 +1,21 @@
-const saveBtn = document.getElementById("saveBtn");
-const lineWidthRange = document.getElementById("lineWidth");
-const bgCanvas = document.getElementById("bgCanvas");
-const drawCanvas = document.getElementById("drawCanvas");
-const eraserBtn = document.getElementById("eraserBtn");
+const saveBtn = document.getElementById("saveBtn");//저장 버튼
+const lineWidthRange = document.getElementById("lineWidth");//펜의 굵기 조절 바
+const bgCanvas = document.getElementById("bgCanvas");//오므라이스 배경 이미지 레이어
+const drawCanvas = document.getElementById("drawCanvas");//사용자 그림 레이어
+const eraserBtn = document.getElementById("eraserBtn");//지우기 버튼
+const bgCtx = bgCanvas.getContext("2d");
+const ctx = drawCanvas.getContext("2d");//사용자 그림은 여기에
+const turnoverBtn = document.getElementById("turnoverBtn");//사용자 그림 전체 지우기 버튼
+
 let isErasing = false;
 let bgImage = new Image();
-const bgCtx = bgCanvas.getContext("2d");
-const ctx = drawCanvas.getContext("2d"); // 사용자 그림은 이쪽에만!
 
 bgImage.src = "omelette.png";
 bgImage.onload = function (){
     resizeCanvases();
 }
 
-let isCircleOmelette = false; // 현재 이미지가 동그란 오므라이스인지 여부
-
+let isCircleOmelette = false; // 현재 이미지 동그란 오므라이스인가?
 
 document.addEventListener("DOMContentLoaded", () => {
     // 버튼 클릭 이벤트 여기서 설정
@@ -168,6 +169,9 @@ eraserBtn.addEventListener("click", () => {
     }
 });
 
+turnoverBtn.addEventListener("click", () => 
+    ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height));
+
 function saveMergedCanvas() {
     const mergedCanvas = document.createElement("canvas");
     const width = bgCanvas.width;
@@ -191,6 +195,8 @@ const openMenuBtn = document.getElementById("openMenuBtn");
 const closeMenuBtn = document.getElementById("closeMenuBtn");
 const menuModal = document.getElementById("menuModal");
 const menuOptions = document.querySelectorAll(".menu-options img");
+const modal = document.getElementById("menuModal");
+const closeBtn = document.getElementById("closeMenuBtn");
 
 openMenuBtn.addEventListener("click", () => {
   menuModal.classList.remove("hidden");
@@ -207,3 +213,16 @@ menuOptions.forEach(img => {
     menuModal.classList.add("hidden");
   });
 });
+
+closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+  
+  // 바깥 영역 클릭 시 모달 닫기
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
+
+
