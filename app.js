@@ -1,4 +1,3 @@
-const saveBtn = document.getElementById("saveBtn");//저장 버튼
 const lineWidthRange = document.getElementById("lineWidth");//펜의 굵기 조절 바
 const bgCanvas = document.getElementById("bgCanvas");//오므라이스 배경 이미지 레이어
 const drawCanvas = document.getElementById("drawCanvas");//사용자 그림 레이어
@@ -102,17 +101,7 @@ function onMouseMove(event) {
     }
 }
 
-drawCanvas.addEventListener("mousemove", onMouseMove);
-drawCanvas.addEventListener("mousedown", startPainting);
-drawCanvas.addEventListener("mouseup", stopPainting);
-drawCanvas.addEventListener("mouseleave", stopPainting);
 
-saveBtn.addEventListener("click", function () {
-    saveMergedCanvas(); // 우리가 만든 저장 함수 호출
-   const link = document.createElement("a");
-   link.download = "omelette.png";
-   link.click();
-});
 
 function getTouchPos(event) {
     const rect = drawCanvas.getBoundingClientRect();
