@@ -1,139 +1,50 @@
 @charset "utf-8";
 body {
-    background-color: rgb(233, 234, 225); /*웹페이지 전체 배경 색상*/
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;/*폰트 패밀리*/
+    background-color: #fff5f9; /*웹페이지 전체 배경 색상*/
+    font-family: 'KyoboHandwriting2024psw' '-apple-system', 'BlinkMacSystemFont', 'Segoe UI','Open Sans', 'Helvetica Neue', sans-serif;/*폰트 패밀리*/
     display:flex; 
     flex-direction:column; 
-    background-image: url('asfalt.png');
     background-repeat: repeat;
-    background-size: 300px 300px; /* 적당히 조정 */
+  
 }
 
+#drawCanvas {
+  cursor: url('pen-cursor.png') 0 26, auto;
+}
+
+
 #eraserBtn {
-    margin-bottom: 16px; /* margin-상단에 16px만큼 생성*/
-    margin-left: 130px;
+    margin-left: auto;  
 }
 
 #openMenuBtn {
-    margin-left: 30;
+    margin-left: 30px;
 }
 
 #turnoverBtn {
-    margin-top: 6px;
+  margin-top: 6px;
 }
 
-.canvas {
-    width: 90vw;
-    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
-    border: 5px solid black; /*캔버스 외각선(두께, 색깔)*/
-    display: block;
+.C-canvas{background-color: rgb(252, 251, 245);
 }
-
-.bg-canvas{ 
-    background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
-    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정*/
-    aspect-ratio: 1 / 1; /* 이미지 비율 1:1 */
-}
-
-.C-canvas{background-color: rgb(252, 251, 245);}
 
 .main-container {
     display: flex;           /* 좌우로 배치하려면 flex! */
     align-items: flex-start; /* 세로로 정렬 */
-    gap: 20px;               /* 버튼과 캔버스 사이 간격 */
+    gap: 25px;               /* 버튼과 캔버스 사이 간격 */
   }
   
   .menu-side {
     display: flex;
-    flex-direction: column; /* 세로로 여러 개 버튼 쌓을 때 유용 */
+    flex-direction: column; /* 세로로 여러 개 버튼 쌓기 */
     justify-content: flex-start;
   }
-  
-  .canvas-wrapper {
-    position: relative;
-    aspect-ratio: 1 / 1;
-  }
 
-#saveBtn {
-    margin-top: 16px; /* margin-상단에 16px만큼 생성*/
+.tool-side {
+  display: flex;
+  margin-left: auto;  
+  margin-bottom: 8px; /* margin-상단에 16px만큼 생성*/
 }
-
-@media only screen and (max-width: 480px) {
-    body {
-        padding: 20px;
-    }
-
-    .canvas,
-    .bg-canvas {
-        width: 90vw;
-        aspect-ratio: 1 / 1;
-        border-width: 1px;
-    }
-
-    #saveBtn {
-        margin-top: 12px;
-        font-size: 14px;
-    }
-}
-
-@media only screen and (max-width: 320px) {
-    .canvas,
-    .bg-canvas {
-        width: 95vw;
-        aspect-ratio: 1 / 1;
-        border-width: 1px;
-    }
-
-    body {
-        padding: 20px;
-    }
-
-    #saveBtn {
-        font-size: 12px;
-        margin-top: 5px;
-    }
-}
-
-@media only screen and (min-width: 481px) and (max-width: 768px) {
-    body {
-        padding: 40px;
-    }
-
-    .canvas,
-    .bg-canvas {
-        width: 500px;
-        aspect-ratio: 1 / 1;
-        border-width: 3px;
-    }
-
-    #saveBtn {
-        margin-top: 14px;
-        font-size: 15px;
-    }
-}
-
-@media only screen and (max-height: 600px) {
-    .canvas {
-        width: 80vh;
-        aspect-ratio: 1 / 1;
-    }
-}
-
-.canvas-wrapper {
-    position: relative;
-    width: 90vw;
-    max-width: 700px;
-    aspect-ratio: 1 / 1;
-  }
-  .canvas,
-  .bg-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    touch-action: none;
-  }
 
 .modal {
     position: fixed;
@@ -150,27 +61,156 @@ body {
   
   /* 모달 내부 콘텐츠 박스 */
   .modal-content {
-    background: white;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4c2c3;
+    background-image: url('lace.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 10px;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 8px 16px rgba(0,0,0,0.3);
   }
   
+  .menu-options {
+    border: 5px solid #ef9b9c;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #menu{
+    font: 'KyoboHandwriting2024psw';
+  }
+
+  .menu-information{
+    margin: 0;
+  }
+  
   .menu-options img {
-    width: 80px;
-    height: 80px;
-    margin: 10px;
+    width: 120px;
+    height: 120px;
+    margin: 5px;
     cursor: pointer;
     border: 2px solid transparent;
     border-radius: 8px;
     transition: 0.2s;
   }
   
+  .menu-1, .menu-2 {
+    margin-right: 10px;
+    display: flex;
+    align-items: center; 
+    gap: 8px; /* 이미지와 입력창 간격 */
+  }
+  
+  .price-input {
+    width: 140px;
+    border:#ffffff;
+    background-color: #ffffff;
+    text-align: right;
+    font-size: 16px;
+  }
+
+  #closeMenuBtn {
+    margin-top: 10px;
+  }
+
   .menu-options img:hover {
-    border-color: #f44336;
+    border-color: #ff9f98;
   }
   
   .hidden {
     display: none;
   }
+
+  
+
+  /* 미디어 쿼리: 모바일 화면 (최대 너비 768px) */
+@media (max-width: 768px) {
+  .canvas-wrapper {
+    max-width: 90vw;
+  }
+
+.canvas {
+    width: 250px;
+    height: 250px;
+    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
+    border: 5px solid black; /*캔버스 외각선(두께, 색깔)*/
+}
+
+.bg-canvas{ 
+    width: 250px;
+    height: 250px;
+    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
+    background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
+    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정*/
+}
+.canvas,
+.bg-canvas {
+    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
+    position: absolute;
+    left: 0;
+    width: 250px;
+    height: 250px;
+    touch-action: none;
+}
+  
+.canvas-side {
+  flex-direction: column;
+  width: 250px;
+  height: 250px;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  margin-right: auto;
+}
+
+  .menu-options img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+
+/* 미디어 쿼리: 데스크탑 화면 (최소 너비 769px) */
+@media (min-width: 769px) {
+  .canvas-wrapper {
+    max-width: 700px;
+  }
+
+  .canvas {
+    width: 700px;
+    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
+    border: 5px solid black; /*캔버스 외각선(두께, 색깔)*/
+
+}
+
+.bg-canvas{ 
+    width: 700px;
+    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
+    background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
+    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정*/
+}
+.canvas,
+.bg-canvas {
+    width: 700px;
+    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
+    position: absolute;
+    left: 0;
+    width: 700px;
+    height: 700px;
+    touch-action: none;
+}
+.canvas-side {
+  flex-direction: column;
+  width: 700px;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  margin-right: auto;
+}
+
+}
+
