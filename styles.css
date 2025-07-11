@@ -22,7 +22,7 @@ body {
 }
 
 #turnoverBtn {
-  margin-top: 6px;
+  margin-top: 20px;
 }
 
 .C-canvas{background-color: rgb(252, 251, 245);
@@ -31,7 +31,7 @@ body {
 .main-container {
     display: flex;           /* 좌우로 배치하려면 flex! */
     align-items: flex-start; /* 세로로 정렬 */
-    gap: 25px;               /* 버튼과 캔버스 사이 간격 */
+    gap: 20px;               /* 버튼과 캔버스 사이 간격 */
   }
   
   .menu-side {
@@ -43,7 +43,7 @@ body {
 .tool-side {
   display: flex;
   margin-left: auto;  
-  margin-bottom: 3px; /* margin-상단에 16px만큼 생성*/
+  margin-bottom: 10px; /* margin-상단에 16px만큼 생성*/
 }
 
 .modal {
@@ -127,9 +127,6 @@ body {
     display: none;
   }
 
-  #turnoverBtn::before {
-  content: "(╯°□°)╯┻━┻";
-}
 
   /* 미디어 쿼리: 모바일 화면 (최대 너비 768px) */
 @media (max-width: 768px) {
@@ -216,6 +213,7 @@ body {
   aspect-ratio: 1 / 1;
   margin-right: auto;
 }
-
+  #turnoverBtn::before {
+  content: "(╯°□°)╯┻━┻";
 }
-
+}
