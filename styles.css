@@ -22,7 +22,7 @@ body {
 }
 
 #turnoverBtn {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .C-canvas{background-color: rgb(252, 251, 245);
@@ -172,10 +172,6 @@ body {
     height: 60px;
   }
 }
-#turnoverBtn::before {
-    content: "🗑️";
-  }
-
 
 /* 미디어 쿼리: 데스크탑 화면 (최소 너비 769px) */
 @media (min-width: 769px) {
@@ -212,8 +208,5 @@ body {
   position: relative;
   aspect-ratio: 1 / 1;
   margin-right: auto;
-}
-  #turnoverBtn::before {
-  content: "(╯°□°)╯┻━┻";
 }
 }
