@@ -43,7 +43,7 @@ body {
 .tool-side {
   display: flex;
   margin-left: auto;  
-  margin-bottom: 8px; /* margin-상단에 16px만큼 생성*/
+  margin-bottom: 3px; /* margin-상단에 16px만큼 생성*/
 }
 
 .modal {
@@ -127,7 +127,9 @@ body {
     display: none;
   }
 
-  
+  #turnoverBtn::before {
+  content: "(╯°□°)╯┻━┻";
+}
 
   /* 미디어 쿼리: 모바일 화면 (최대 너비 768px) */
 @media (max-width: 768px) {
@@ -173,6 +175,9 @@ body {
     height: 60px;
   }
 }
+#turnoverBtn::before {
+    content: "🗑️";
+  }
 
 
 /* 미디어 쿼리: 데스크탑 화면 (최소 너비 769px) */
