@@ -1,4 +1,4 @@
-onst saveBtn = document.getElementById("saveBtn");//저장 버튼
+const saveBtn = document.getElementById("saveBtn");//저장 버튼
 const lineWidthRange = document.getElementById("lineWidth");//펜의 굵기 조절 바
 const bgCanvas = document.getElementById("bgCanvas");//오므라이스 배경 이미지 레이어
 const drawCanvas = document.getElementById("drawCanvas");//사용자 그림 레이어
@@ -27,19 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 버튼 클릭 이벤트 여기서 설정
 });
 
-window.addEventListener("resize", () => {
-    if (bgImage.complete) {
-        resizeCanvases();
-    }
-});
-
 function resizeCanvases() {
-    const frame = document.querySelector(".canvas-frame");
-    if (!frame) return;
-    
-    const displayWidth = frame.clientWidth;
-    const displayHeight = frame.clientHeight;
-    if (!displayWidth || !displayHeight) return;
+    const displayWidth = drawCanvas.clientWidth;
+    const displayHeight = drawCanvas.clientHeight;
     const scale = window.devicePixelRatio || 1;
 
     for (const canvas of [bgCanvas, drawCanvas]) {
@@ -303,4 +293,3 @@ document.addEventListener("keydown", function (event) {
       ctx.putImageData(prev, 0, 0);
     }
   }
-
