@@ -22,16 +22,40 @@ body {
 }
 
 #turnoverBtn {
-  margin-top: 30px;
+  margin-top: 6px;
 }
 
 .C-canvas{background-color: rgb(252, 251, 245);
 }
 
+.canvas-frame {
+  width: min(700px, 90vw);
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border: 5px solid black; /* 캔버스 외곽선 */
+}
+
+.canvas,
+.bg-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.canvas-side {
+  display: flex;
+  flex-direction: column;
+  width: min(700px, 90vw);
+  margin-right: auto;
+}
+
 .main-container {
     display: flex;           /* 좌우로 배치하려면 flex! */
     align-items: flex-start; /* 세로로 정렬 */
-    gap: 20px;               /* 버튼과 캔버스 사이 간격 */
+    gap: 25px;               /* 버튼과 캔버스 사이 간격 */
   }
   
   .menu-side {
@@ -43,7 +67,7 @@ body {
 .tool-side {
   display: flex;
   margin-left: auto;  
-  margin-bottom: 10px; /* margin-상단에 16px만큼 생성*/
+  margin-bottom: 8px; /* margin-상단에 16px만큼 생성*/
 }
 
 .modal {
@@ -127,6 +151,7 @@ body {
     display: none;
   }
 
+  
 
   /* 미디어 쿼리: 모바일 화면 (최대 너비 768px) */
 @media (max-width: 768px) {
@@ -134,44 +159,12 @@ body {
     max-width: 90vw;
   }
 
-.canvas {
-    width: 250px;
-    height: 250px;
-    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
-    border: 5px solid black; /*캔버스 외각선(두께, 색깔)*/
-}
-
-.bg-canvas{ 
-    width: 250px;
-    height: 250px;
-    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
-    background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
-    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정*/
-}
-.canvas,
-.bg-canvas {
-    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
-    position: absolute;
-    left: 0;
-    width: 250px;
-    height: 250px;
-    touch-action: none;
-}
-  
-.canvas-side {
-  flex-direction: column;
-  width: 250px;
-  height: 250px;
-  position: relative;
-  aspect-ratio: 1 / 1;
-  margin-right: auto;
-}
-
   .menu-options img {
     width: 60px;
     height: 60px;
   }
 }
+
 
 /* 미디어 쿼리: 데스크탑 화면 (최소 너비 769px) */
 @media (min-width: 769px) {
@@ -179,34 +172,4 @@ body {
     max-width: 700px;
   }
 
-  .canvas {
-    width: 700px;
-    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
-    border: 5px solid black; /*캔버스 외각선(두께, 색깔)*/
-
-}
-
-.bg-canvas{ 
-    width: 700px;
-    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
-    background-image: url("omelette.png");/*캔버스 배경 "omelette(aimg).jpg" 사용*/
-    background-size: cover; /*캔버스 배경이 네모를 꽉 채우게 설정*/
-}
-.canvas,
-.bg-canvas {
-    width: 700px;
-    aspect-ratio: 1 / 1; /* 캔버스 비율 1:1 */
-    position: absolute;
-    left: 0;
-    width: 700px;
-    height: 700px;
-    touch-action: none;
-}
-.canvas-side {
-  flex-direction: column;
-  width: 700px;
-  position: relative;
-  aspect-ratio: 1 / 1;
-  margin-right: auto;
-}
 }
