@@ -27,9 +27,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // 버튼 클릭 이벤트 여기서 설정
 });
 
+window.addEventListener("resize", () => {
+    if (bgImage.complete) {
+        resizeCanvases();
+    }
+});
+
 function resizeCanvases() {
-    const displayWidth = drawCanvas.clientWidth;
-    const displayHeight = drawCanvas.clientHeight;
+    const frame = document.querySelector(".canvas-frame");
+    if (!frame) return;
+    
+    const displayWidth = frame.clientWidth;
+    const displayHeight = frame.clientHeight;
+    if (!displayWidth || !displayHeight) return;
     const scale = window.devicePixelRatio || 1;
 
     for (const canvas of [bgCanvas, drawCanvas]) {
@@ -115,9 +125,6 @@ drawCanvas.addEventListener("mouseleave", stopPainting);
 
 saveBtn.addEventListener("click", function () {
     saveMergedCanvas(); // 우리가 만든 저장 함수 호출
-   const link = document.createElement("a");
-   link.download = "omelette.png";
-   link.click();
 });
 
 function getTouchPos(event) {
@@ -173,7 +180,7 @@ eraserBtn.addEventListener("click", () => {
         drawCanvas.style.cursor = "url('mayo-cursor-b.png') 0 26 , auto";
     } else {
         eraserBtn.textContent = "『🖍️』 ▶ 🧽";
-        drawCanvas.style.cursor = "url('pen-cursor.png') 0 26, auto";
+        drawCanvas.style.cursor = "url('pen-cursor.PNG') 0 26, auto";
     }
 });
 
@@ -189,7 +196,7 @@ document.addEventListener("keydown", function (event) {
       // 펜 모드로 전환
       isErasing = false;
       eraserBtn.textContent = "『🖍️』 ▶ 🧽";
-      drawCanvas.style.cursor = "url('pen-cursor.png') 0 26, auto";
+      drawCanvas.style.cursor = "url('pen-cursor.PNG') 0 26, auto";
     }
   });
 
