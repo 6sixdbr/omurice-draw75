@@ -303,3 +303,4 @@ document.addEventListener("keydown", function (event) {
       ctx.putImageData(prev, 0, 0);
     }
   }
+
